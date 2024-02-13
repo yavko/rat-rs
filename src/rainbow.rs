@@ -1,6 +1,13 @@
 // code borrowed from https://github.com/BlueTufa/lolcat/blob/master/src/main.rs
 use ansi_term::Colour;
 use rand::Rng;
+use std::sync::OnceLock;
+
+static ENTROPY: OnceLock<u32> = OnceLock::new();
+
+fn entropy() -> u32 {
+    *ENTROPY.get_or_init(|| rand::thread_rng().gen_range(0..=255))
+}
 
 fn rainbow(seed: f64) -> ansi_term::Colour {
     let freq = 1.13;
@@ -18,10 +25,9 @@ fn rainbow(seed: f64) -> ansi_term::Colour {
 }
 
 pub fn print_rainbow(string: String) {
-    let entropy = rand::thread_rng().gen_range(0..=255);
     for line in string.lines() {
         for (ix, c) in line.char_indices() {
-            let seed = f64::from(ix as u32 + entropy);
+            let seed = f64::from(ix as u32 + entropy());
             let colour = rainbow(seed);
             let rainbow_char = colour.paint(c.to_string());
             print!("{}", rainbow_char);
