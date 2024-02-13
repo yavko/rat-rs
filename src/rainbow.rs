@@ -19,11 +19,14 @@ fn rainbow(seed: f64) -> ansi_term::Colour {
 
 pub fn print_rainbow(string: String) {
     let entropy = rand::thread_rng().gen_range(0..=255);
-    for (ix, c) in string.char_indices() {
-        let seed = f64::from(ix as u32 + entropy);
-        let colour = rainbow(seed);
-        let rainbow_char = colour.paint(c.to_string());
-        print!("{}", rainbow_char);
+    for line in string.lines() {
+        for (ix, c) in line.char_indices() {
+            let seed = f64::from(ix as u32 + entropy);
+            let colour = rainbow(seed);
+            let rainbow_char = colour.paint(c.to_string());
+            print!("{}", rainbow_char);
+        }
+        println!();
     }
 }
 
