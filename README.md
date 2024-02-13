@@ -7,7 +7,7 @@ Rust rewrite of https://github.com/thinkingsand/rat/, 0 unsafe code, 0 dependenc
 ```sh
 cargo build --release
 ```
-This will create a binary at `./target/rat-rs`
+This will create a binary at `./target/release/rat-rs`
 
 ## Nix
 will be added someday

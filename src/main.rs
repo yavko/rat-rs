@@ -51,7 +51,7 @@ fn print_debug() {
 }
 
 fn port_cls() {
-    print!("\x1b[H\033[J");
+    print!("\x1b[H\x1b[J");
 }
 
 fn port_gotoxy(x: i32, y: i32) {
