@@ -1,0 +1,13 @@
+[package]
+name = "rat-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ansi_term = "0.12.1"
+anyhow = "1"
+bpaf = { version = "0.9.9", features = ["derive"] }
+rand = "0.8.5"
+rodio = "0.17"
