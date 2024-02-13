@@ -33,5 +33,5 @@ pub const FRAMES: [&str; 31] = [
 ];
 
 pub const FRAME_COUNT: u32 = 31;
-pub const FRAME_LEN: u32 = 4590;
+pub const _FRAME_LEN: u32 = 4590;
 pub const DELAY_TIME: u32 = 100;

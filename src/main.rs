@@ -62,19 +62,7 @@ const AUDIO: &[u8] = include_bytes!("./audio_loop.wav");
 fn main() -> Result<()> {
     use std::time::Instant;
     let start = Instant::now();
-    // static struct option long_options[] = {
-    //     {"rainbow", no_argument, 0, 'r'},
-    //     {"ratmark", no_argument, 0, 'm'},
-    //     {"unlock", no_argument, 0, 'u'},
-    //     {"debug", no_argument, 0, 'd'},
-    //     {"help", no_argument, 0, 'h'},
-    //     {0, 0, 0, 0}
-    // };
     let opts = get_options();
-    // if opts.rainbow {
-    //     eprintln!("Rainbow mode not supported");
-    //     std::process::exit(1);
-    // }
 
     port_cls();
     port_gotoxy(0, 0);
@@ -88,7 +76,6 @@ fn main() -> Result<()> {
             print!("\n                                                         You have been blessed with {} spins of the rat.\n", LOOP_COUNT.load(Ordering::SeqCst));
             print!("{}", frames::FRAMES[index]);
         } else {
-            use rainbow::print_rainbow;
             print_rainbow!("\n                                                         You have been blessed with {} spins of the rat.\n", LOOP_COUNT.load(Ordering::SeqCst));
             print_rainbow!("{}", frames::FRAMES[index]);
         }
@@ -114,12 +101,9 @@ fn main() -> Result<()> {
 }
 fn audio() -> Result<()> {
     loop {
-        // Get a output stream handle to the default physical sound device
         let (_stream, stream_handle) = OutputStream::try_default()?;
         let sink = Sink::try_new(&stream_handle)?;
-        // Decode that sound file into a source
         let source = Decoder::new_wav(Cursor::new(AUDIO))?;
-        // Play the sound directly on the device
         sink.append(source);
 
         sink.sleep_until_end();
