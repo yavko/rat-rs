@@ -12,4 +12,7 @@ cargo build --release
 This will create a binary at `./target/release/rat-rs`
 
 ## Nix
-will be added someday
+You should know how to, add it to your config
+```sh
+nix run github:yavko/rat-rs
+```
